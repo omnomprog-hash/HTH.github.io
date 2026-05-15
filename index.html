@@ -1,20 +1,292 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Mini Chat</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTH Project</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#0a0a0a;
+    color:white;
+    font-family:Arial;
+    overflow-x:hidden;
+}
+
+header{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.6),
+    rgba(0,0,0,0.8)),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600");
+
+    background-size:cover;
+    background-position:center;
+}
+
+header h1{
+    font-size:70px;
+    margin:0;
+    color:#00ff88;
+
+    text-shadow:
+    0 0 10px #00ff88,
+    0 0 30px #00ff88;
+}
+
+header p{
+    width:70%;
+    font-size:20px;
+    color:#cccccc;
+}
+
+.btn{
+    margin-top:20px;
+    padding:15px 40px;
+    background:#00ff88;
+    color:black;
+    border:none;
+    border-radius:10px;
+    font-size:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 25px #00ff88;
+}
+
+section{
+    padding:80px 10%;
+}
+
+.card-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#151515;
+    border:1px solid #222;
+    border-radius:20px;
+    padding:20px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#00ff88;
+    box-shadow:0 0 20px rgba(0,255,136,0.3);
+}
+
+.card h2{
+    color:#00ff88;
+}
+
+.specs{
+    background:#111;
+    border-radius:20px;
+    padding:30px;
+}
+
+.spec{
+    margin:15px 0;
+}
+
+.bar{
+    width:100%;
+    height:20px;
+    background:#222;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    background:#00ff88;
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    color:#888;
+}
+
+.glow{
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        text-shadow:0 0 10px #00ff88;
+    }
+
+    to{
+        text-shadow:
+        0 0 20px #00ff88,
+        0 0 40px #00ff88;
+    }
+}
+
+</style>
 </head>
 <body>
 
-<h1>Mini GitHub Chat</h1>
+<header>
 
-<div id="chat"></div>
+<h1 class="glow">HTH-1</h1>
 
-<input id="msg" placeholder="type message...">
-<button onclick="send()">Send</button>
+<p>
+Helios Tornado Hunter.
+Experimental armored storm vehicle designed
+for extreme wind research and survival.
+</p>
 
-<script src="script.js"></script>
+<button class="btn" onclick="scrollToInfo()">
+ENTER PROJECT
+</button>
+
+</header>
+
+<section id="info">
+
+<h1>ABOUT HTH</h1>
+
+<div class="card-container">
+
+<div class="card">
+<h2>ARMOR</h2>
+<p>
+Reinforced steel shell with aerodynamic
+storm-resistant structure.
+</p>
+</div>
+
+<div class="card">
+<h2>STABILITY</h2>
+<p>
+Low center of gravity and heavy chassis
+for high-wind resistance.
+</p>
+</div>
+
+<div class="card">
+<h2>SENSORS</h2>
+<p>
+Wind speed, pressure, GPS and storm tracking systems.
+</p>
+</div>
+
+<div class="card">
+<h2>MISSION</h2>
+<p>
+Storm chasing, survival experiments and
+extreme weather analysis.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h1>HTH SYSTEM STATUS</h1>
+
+<div class="specs">
+
+<div class="spec">
+Armor Strength
+<div class="bar">
+<div class="fill" style="width:90%"></div>
+</div>
+</div>
+
+<div class="spec">
+Storm Resistance
+<div class="bar">
+<div class="fill" style="width:95%"></div>
+</div>
+</div>
+
+<div class="spec">
+Engine Power
+<div class="bar">
+<div class="fill" style="width:70%"></div>
+</div>
+</div>
+
+<div class="spec">
+Survival Systems
+<div class="bar">
+<div class="fill" style="width:85%"></div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h1>LIVE LOG</h1>
+
+<div class="card">
+<p id="log"></p>
+</div>
+
+</section>
+
+<footer>
+HTH PROJECT • HELIOS RESEARCH DIVISION
+</footer>
+
+<script>
+
+function scrollToInfo(){
+    document.getElementById("info")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+const messages = [
+    "Radar online...",
+    "Wind systems active...",
+    "Pressure sensors calibrated...",
+    "Storm tracking initialized...",
+    "HTH-1 ready..."
+];
+
+let i = 0;
+
+function updateLog(){
+
+    document.getElementById("log")
+    .innerText = messages[i];
+
+    i++;
+
+    if(i >= messages.length){
+        i = 0;
+    }
+}
+
+setInterval(updateLog,2000);
+
+updateLog();
+
+</script>
 
 </body>
 </html>
